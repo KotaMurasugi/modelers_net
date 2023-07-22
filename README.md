@@ -1,24 +1,30 @@
-# README
+# Modelers Net
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+### サイトテーマ
+作った作品を投稿したり、他人の作品を検索・コメントして交流を深めるコミュニティサイト
 
-* Ruby version
+### テーマを選んだ理由
+模型製作が好きで作る以外にも他人の作品を見るのが好きで表現の方法だったり参考にできる技術を探す事があるのですが、従来のSNSだと模型の情報だけをピンポイントで探すことが難しく苦労する事がありました。<br>
+そこで同じ様に模型好きの方で集まったコミュニティサイトがあればより簡単に検索ができたり交流ができるのではないかと考えました。<br>
+またこれから模型を始めようと思っている方へ魅力を伝えることができると考えこのテーマにしました。<br>
 
-* System dependencies
+### ターゲットユーザー
+- 模型製作が好きで自身の作品を共有したい人、また他人の作品を見たい人<br>
+- 模型製作について情報交換をしたい人
 
-* Configuration
+### 主な利用シーン
+- 見たいジャンルの模型を検索したい時
+- 製作者の拘った所などを見たい時
+- 自分の作った作品を投稿する時
 
-* Database creation
+### 設計書
+後ほど作成予定
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
