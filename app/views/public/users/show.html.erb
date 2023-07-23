@@ -1,0 +1,14 @@
+<div>
+  <h3><%= @user.nickname %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+</div>
+
+<% @post.each do |post| %>
+  <div>
+    <%= image_tag post.get_image %>
+    <%= image_tag post.user.get_profile_image(100,100) %>
+    <%= post.title %>
+    <%= post.body %>
+    <%= post.user.nickname %>
+  </div>
+<% end %>

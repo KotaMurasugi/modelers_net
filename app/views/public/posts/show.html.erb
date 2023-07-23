@@ -1,10 +1,18 @@
 <div>
-  <%= image_tag @post.get_image %>
+  <%#= image_tag @post.get_image %>
+  <% if @post.images.attached? %>
+    <% @post.images.each do |image| %>
+      <%= image_tag image %>
+    <% end %>
+  <% else %>
+    <%= image_tag "default-image.jpg" %>
+  <% end %>
   <%= @post.title %>
   <%= @post.body %>
+  <%= image_tag @post.user.get_profile_image(100,100) %>
   <%= @post.user.nickname %>
   <%= @post.created_at.strftime('%Y/%m/%d') %>
   <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: delete %>
+    <%= link_to "削除", post_path(@post), method: :delete %>
   <% end %>
 </div>

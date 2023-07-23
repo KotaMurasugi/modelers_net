@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
-    redirect_to post_path
+    redirect_to posts_path
   end
 
   def index
@@ -21,13 +21,13 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.delete
-    redirect_to post_path
+    redirect_to posts_path
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:image, :title, :body,)
+    params.require(:post).permit(:title, :body, images: [])
   end
 
 end

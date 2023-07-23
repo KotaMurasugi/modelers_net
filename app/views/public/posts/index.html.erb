@@ -1,9 +1,15 @@
 <% @posts.each do |post| %>
   <div>
     <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_image %>
+      <% if post.images.attached? %>
+        <% post.images.each do |image| %>
+          <%= image_tag image %>
+        <% end %>
+      <% else %>
+        <%= image_tag "default-image.jpg" %>
+      <% end %>
     <% end %>
-    <%= image_tag 'sample-auther.jpg' %>
+    <%= image_tag post.user.get_profile_image(100,100) %>
     <%= post.title %>
     <%= post.body %>
     <%= post.user.nickname %>

@@ -1,7 +1,7 @@
 <h1>投稿する</h1>
 <%= form_with model: @post do |f| %>
   <h4>画像</h4>
-  <%= f.file_field :image, multiple: true, accept: "image/*"  %>
+  <%= f.file_field :images, multiple: true, accept: "image/*"  %>
   <h4>タイトル</h4>
   <%= f.text_field :title %>
   <h4>コメント</h4>
