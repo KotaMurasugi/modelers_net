@@ -10,8 +10,10 @@ Rails.application.routes.draw do
     root 'homes#top'
 
     get 'homes/about' => 'homes#about', as: 'about'
-    resources :posts, only: [:new, :create, :index, :show, :destroy]
-    resources :users, only: [:show, :index, :edit]
+    resources :posts, only: [:new, :create, :index, :show, :destroy] do
+      resources :comments, only: [:create, :destroy]
+    end
+    resources :users, only: [:show, :index, :edit, :update]
   end
 
   # 運営用

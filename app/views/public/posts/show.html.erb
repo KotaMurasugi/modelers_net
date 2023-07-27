@@ -1,18 +1,28 @@
 <div>
-  <%#= image_tag @post.get_image %>
-  <% if @post.images.attached? %>
-    <% @post.images.each do |image| %>
-      <%= image_tag image %>
-    <% end %>
-  <% else %>
-    <%= image_tag "default-image.jpg" %>
-  <% end %>
   <%= @post.title %>
+  <% @post.images.each do |image| %>
+    <%= image_tag image %>
+  <% end %>
   <%= @post.body %>
   <%= image_tag @post.user.get_profile_image(100,100) %>
   <%= @post.user.nickname %>
   <%= @post.created_at.strftime('%Y/%m/%d') %>
   <% if @post.user == current_user %>
     <%= link_to "削除", post_path(@post), method: :delete %>
+  <% end %>
+
+  <p>コメント件数: <%= @post.comments.count %></p>
+  <% @post.comments.each do |comment| %>
+    <%= image_tag comment.user.get_profile_image(50,50) %>
+    <%= comment.user.nickname %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <% if comment.user == current_user %>
+      <%= link_to "削除", post_comment_path(comment.post,comment), method: :delete %>
+    <% end %>
+  <% end %>
+
+  <%= form_with model: [@post, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントを送ろう！" %>
+    <%= f.submit "送信" %>
   <% end %>
 </div>

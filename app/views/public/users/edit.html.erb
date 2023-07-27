@@ -1,0 +1,10 @@
+<h2>ユーザー情報編集</h2>
+<%= form_with model: @user do |f| %>
+  <p>ニックネーム</p>
+  <%= f.text_field :nickname, autofocus: true, placeholder:"ニックネーム" %>
+  <p>プロフィール画像</p>
+  <%= f.file_field :profile_image, placeholder: "プロフィール画像" %>
+  <p>自己紹介</p>
+  <%= f.text_field :introduction, placeholder: "自己紹介" %>
+  <%= f.submit "保存" %>
+<% end %>

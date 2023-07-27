@@ -13,5 +13,6 @@
     <%= post.title %>
     <%= post.body %>
     <%= post.user.nickname %>
+    <%= link_to "#{post.comments.count}コメント", post_path(post.id) %>
   </div>
 <% end %>
