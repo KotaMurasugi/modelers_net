@@ -17,8 +17,10 @@
   <div>
     <%= post.title %>
 
-    <% post.images.each do |image| %>
-      <%= image_tag image %>
+    <% if post.images.attached? %>
+        <%= image_tag post.images[0] %>
+      <% else %>
+        <%= image_tag "default-image.jpg" %>
     <% end %>
 
     <%= post.created_at.strftime('%Y/%m/%d') %>
@@ -31,3 +33,6 @@
 
   </div>
 <% end %>
+
+<p>いいねした投稿</p>
+<%= render "favorite", favorites: @favorites %>

@@ -6,13 +6,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
       <% if user_signed_in? %>
+        <li>
+          <%= link_to "ホーム", posts_path %>
+        </li>
         <li>
           <%= link_to "投稿する", new_post_path %>
         </li>
@@ -33,4 +36,11 @@
     </header>
     <%= yield %>
   </body>
+
+  <footer class="footer mt-auto py-3 bg-body-tertiary">
+    <div class="container">
+      <span class="text-body-secondary">Mdelers Net</span>
+    </div>
+  </footer>
+
 </html>

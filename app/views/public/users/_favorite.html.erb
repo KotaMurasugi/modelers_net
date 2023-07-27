@@ -1,12 +1,12 @@
-<% @posts.each do |post| %>
+<% favorites.each do |post| %>
   <div>
     <%= post.title %>
 
     <% if post.images.attached? %>
-      <%# 先頭の画像だけを表示する %>
-      <%= image_tag post.images[0] %>
+
+        <%= image_tag post.images[0] %>
+
     <% else %>
-      <%# 画像が無い場合に代わりの画像を挿入する %>
       <%= image_tag "default-image.jpg" %>
     <% end %>
 
