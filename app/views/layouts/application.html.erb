@@ -21,7 +21,20 @@
         </button>
           <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-            <% if user_signed_in? %>
+            <!--admin-->
+            <% if admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "投稿一覧", admin_posts_path, class: 'nav-link active' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "タグ作成", admin_tags_path, class: 'nav-link active' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link active' %>
+              </li>
+
+            <!--user-->
+            <% elsif user_signed_in? %>
               <li class="nav-item">
                 <%= link_to "ホーム", posts_path, class: 'nav-link active' %>
               </li>
@@ -40,9 +53,6 @@
               </li>
               <li class="nav-item">
                 <%= link_to "ログイン", new_user_session_path, class: 'nav-link active' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link active' %>
               </li>
             <% end %>
             </ul>

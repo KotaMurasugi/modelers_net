@@ -1,0 +1,27 @@
+<div>
+  <%= @post.title %>
+
+  <% @post.tags.each do |tag| %>
+    <%= tag.tag %>
+  <% end %>
+
+  <% @post.images.each do |image| %>
+    <%= image_tag image %>
+  <% end %>
+
+  <%= @post.body %>
+
+  <%= image_tag @post.user.get_profile_image(100,100) %>
+
+  <%= link_to user_path(@post.user.id) do %>
+    <%= @post.user.nickname %>
+  <% end %>
+
+  <%= @post.created_at.strftime('%Y/%m/%d') %>
+
+  <% if @post.user == current_user %>
+    <%= link_to "削除", post_path(@post), method: :delete %>
+  <% end %>
+  <p>コメント件数: <%= @post.comments.count %></p>
+
+</div>
