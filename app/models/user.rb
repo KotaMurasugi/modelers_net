@@ -9,6 +9,15 @@ class User < ApplicationRecord
   has_many :comments,  dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+#ゲストユーザー用
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.nickname = "guestuser"
+    end
+  end
+
+#プロフィール画像用
   def get_profile_image(w, h)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  # ゲストユーザー用
+  devise_scope :user do
+    post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+  end
+
   # ユーザー用
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -13,12 +18,15 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :index, :show, :destroy] do
       resource  :favorites, only: [:create, :destroy]
       resources :comments,  only: [:create, :destroy]
+      collection do
+        get 'search'
+      end
     end
     resources :users, only: [:show, :index, :edit, :update]
   end
 
   # 運営用
-  devise_for :admin, controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
 

@@ -1,6 +1,10 @@
 <div>
   <%= @post.title %>
 
+  <% @post.tags.each do |tag| %>
+    <%= tag.tag %>
+  <% end %>
+
   <% @post.images.each do |image| %>
     <%= image_tag image %>
   <% end %>

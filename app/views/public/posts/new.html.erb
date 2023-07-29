@@ -18,6 +18,16 @@
           <div class="input-group mb-3 mt-4">
             <%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
           </div>
+          <div class="row d-flex justify-content-start m-5">
+            <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag) do |tag| %>
+              <div class="form-check form-check-inline flex flex-wrap">
+                <%= tag.label do %>
+                  <%= tag.check_box %>
+                  <%= tag.text %>
+                <% end %>
+              </div>
+             <% end %>
+          </div>
           <%= f.text_area :body, class:"form-control", rows:"3", placeholder:"こだわった所やお気に入りポイントを書こう！" %>
           <hr>
           <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>

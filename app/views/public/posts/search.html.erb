@@ -21,7 +21,7 @@
               <strong><i class="far fa-flag"></i><span> <%= post.title %></span></strong>
             <% end %>
           </p>
-          <p class"card-text">投稿日: <%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+          <p class"card-text">投稿日: <%= post.created_at.strftime('%Y/%m/%d') %></p>
             <span><i class="fas fa-user"></i>  By
             <%= link_to(user_path(post.user.id)) do %>
               <%= post.user.nickname %>

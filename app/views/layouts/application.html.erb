@@ -21,29 +21,42 @@
           <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
             <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "ホーム", posts_path, class: 'nav-link active' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link active' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "投稿", new_post_path, class: 'nav-link active' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link active' %>
-            </li>
+              <li class="nav-item">
+                <%= link_to "ホーム", posts_path, class: 'nav-link active' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link active' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "投稿", new_post_path, class: 'nav-link active' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link active' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "サインイン", new_user_registration_path, class: 'nav-link active' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: 'nav-link active' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link active' %>
+              </li>
             <% end %>
             </ul>
-            <form class="d-flex" role="search">
-              <input type="search" class="form-control" placeholder="検索..." aria-label="検索...">
-            </form>
+            <%#<form class="d-flex" role="search">%>
+              <%= form_with url: search_posts_path, local: true, method: :get do |form| %>
+                <%= form.text_field :keyword, placeholder: "投稿を検索する" %>
+                <%= form.submit "検索" %>
+              <% end %>
+            <%#</form>%>
           </div>
         </div>
       </nav>
     </header>
     <%= yield %>
-    <footer class="footer mt-auto py-3 bg-body-tertiary " data-bs-theme="dark">
+    <footer class="footer mt-auto py-3 bg-body-tertiary fixed-bottom" data-bs-theme="dark">
       <div class="container " >
         <span class="text-body-secondary">Mdelers Net</span>
       </div>
