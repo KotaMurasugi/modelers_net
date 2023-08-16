@@ -1,17 +1,24 @@
-<div>
-  <%= @post.title %>
+<div class="container">
+  <div class="row">
+
+  <div>
+    <h1><%= @post.title %></h1>
+  </div>
 
   <% @post.tags.each do |tag| %>
     <%= tag.tag %>
   <% end %>
 
+  <div class="col-lg-6 col-md-6 ">
   <% @post.images.each do |image| %>
     <%= image_tag image %>
   <% end %>
+  </div>
 
-  <%= @post.body %>
+  <div>
+  <h4><%= @post.body %></h4><br >
 
-  <%= image_tag @post.user.get_profile_image(100,100) %>
+  <%= image_tag @post.user.get_profile_image(100,100), class:"rounded-circle"; %>
 
   <%= link_to user_path(@post.user.id) do %>
     <%= @post.user.nickname %>
@@ -36,21 +43,24 @@
       <% end %>
     </p>
   <% end %>
-
+  </div>
   <p>コメント件数: <%= @post.comments.count %></p>
 
+  <div>
   <% @post.comments.each do |comment| %>
-    <%= image_tag comment.user.get_profile_image(50,50) %>
+    <%= image_tag comment.user.get_profile_image(50,50), class:"rounded-circle"; %>
     <%= comment.user.nickname %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><br >
+    <%= comment.comment %>
     <% if comment.user == current_user %>
       <%= link_to "削除", post_comment_path(comment.post,comment), method: :delete %>
     <% end %>
   <% end %>
+  </div>
 
   <%= form_with model: [@post, @comment] do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントを送ろう！" %>
     <%= f.submit "送信" %>
   <% end %>
-
+  </div>
 </div>

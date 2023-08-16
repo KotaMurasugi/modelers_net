@@ -17,7 +17,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order(created_at: "DESC")
+    # 投稿を最新順に並べるためのorderメソッド
+    @posts = Post.page(params[:page]).order(created_at: "DESC")
   end
 
   def show

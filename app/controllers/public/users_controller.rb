@@ -3,7 +3,8 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit, :show]
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order(created_at: "DESC")
+    #新着順にするためのorderメソッド
+    @posts = @user.posts.page(params[:page]).order(created_at: "DESC")
     favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
     @favorites = Post.find(favorites)
   end

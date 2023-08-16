@@ -16,9 +16,6 @@
       <nav class="navbar navbar-expand-sm bg-body-secondary fixed-top" data-bs-theme="dark">
         <div class="container-fluid">
         <a class="navbar-brand" href="/">ModelersNet</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
-          <span class="navbar-toggler-icon"></span>
-        </button>
           <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
             <!--admin-->
@@ -56,24 +53,25 @@
               </li>
             <% end %>
             </ul>
-            <%#<form class="d-flex" role="search">%>
               <%= form_with url: search_posts_path, local: true, method: :get do |form| %>
                 <%= form.text_field :keyword, placeholder: "投稿を検索する" %>
                 <%= form.submit "検索" %>
               <% end %>
-            <%#</form>%>
           </div>
         </div>
       </nav>
     </header>
+
+    <main>
     <%= yield %>
+    </main>
+
     <footer class="footer mt-auto py-3 bg-body-tertiary fixed-bottom" data-bs-theme="dark">
       <div class="container " >
         <span class="text-body-secondary">Mdelers Net</span>
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
 
 </html>

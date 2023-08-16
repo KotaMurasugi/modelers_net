@@ -22,7 +22,11 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
-    resources :users, only: [:show, :index, :edit, :update]
+    resources :users, only: [:show, :index, :edit, :update]do
+      resource :relationships, only:[:create, :destroy]
+      get 'follows' => 'relationships#follower'
+      get 'followers' => 'relationships#followed'
+    end
   end
 
   # 運営用
