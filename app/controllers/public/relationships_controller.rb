@@ -9,12 +9,12 @@ class Public::RelationshipsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def follower
+  def follows
     user = User.find(params[:user_id])
     @users = user.following_users
   end
 
-  def followed
+  def followers
     user = User.find(params[:user_id])
     @users = user.follower_users
   end

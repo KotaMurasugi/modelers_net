@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
 #フォローの確認
   def following?(user)
-   following_user.include?(user)
+   following_users.include?(user)
   end
 
 #ゲストユーザー用

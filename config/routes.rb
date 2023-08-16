@@ -16,16 +16,20 @@ Rails.application.routes.draw do
 
     get 'homes/about' => 'homes#about', as: 'about'
     resources :posts, only: [:new, :create, :index, :show, :destroy] do
+      #いいね機能
       resource  :favorites, only: [:create, :destroy]
+      #コメント機能
       resources :comments,  only: [:create, :destroy]
       collection do
+        #検索機能
         get 'search'
       end
     end
     resources :users, only: [:show, :index, :edit, :update]do
+      #フォロー機能用
       resource :relationships, only:[:create, :destroy]
-      get 'follows' => 'relationships#follower'
-      get 'followers' => 'relationships#followed'
+      get 'follows' => 'relationships#follows'
+      get 'followers' => 'relationships#followers'
     end
   end
 
