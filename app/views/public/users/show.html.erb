@@ -2,21 +2,26 @@
   <div class="side col-2">
     <hi>ユーザープロフィール</hi>
     <div>
-     <h3><%= @user.nickname %></h3>
+      <h3><%= @user.nickname %></h3>
 
-    <td>フォロー数:
-      <%= link_to user_follows_path(@user.id) do %>
-        <%= @user.follower.count %>
-      <% end %>
-    </td>
+      <%= image_tag @user.get_profile_image(100,100), class:"mt-3 rounded-circle" %><br >
 
-    <td>フォロワー数:
-      <%= link_to user_followers_path(@user.id) do %>
-        <%= @user.followed.count %>
-      <% end %>
-    </td>
+      <td>フォロー数:
+        <%= link_to user_follows_path(@user.id) do %>
+          <%= @user.follower.count %>
+        <% end %>
+      </td>
 
-      <%= image_tag @user.get_profile_image(100,100), class:"mt-3 rounded-circle" %>
+      <td>フォロワー数:
+        <%= link_to user_followers_path(@user.id) do %>
+          <%= @user.followed.count %>
+        <% end %>
+      </td>
+
+      <td>
+        <%= link_to "いいね一覧", favorites_user_path(@user.id) %>
+      </td>
+
 
       <p>自己紹介</p>
 
@@ -39,9 +44,6 @@
   </div>
 
   <div class="main col-10">
-    <p>投稿一覧</p>
     <%= render "public/posts/headline", posts: @posts %>
   </div>
 </div>
-<p>いいねした投稿</p>
-<%= render "favorite", favorites: @favorites %>

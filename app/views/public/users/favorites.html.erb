@@ -1,8 +1,8 @@
 <section>
-  <h3>検索結果</h3>
+  <h3>いいね一覧</h3>
   <div class="container">
       <div class="row">
-        <% @posts.each do |post| %>
+        <% @favorites.each do |post| %>
         <div class="col-lg-4 col-md-6">
           <div class="card mx-2 mt-4 shadow-lg" style="height: 28rem">
           <%= link_to post_path(post.id) do %>
@@ -30,15 +30,14 @@
                    <%= post.user.nickname %>
                 <% end %></span>
                 <span> | </span>
-                <span><%= post.comments.count %>コメント</span>
-                <span> | </span>
+                <span><%= post.comments.count %>コメント</span><br >
                 <span><%= post.favorites.count %>いいね </span>
               </div>
           </div>
         </div>
         </div>
         <% end %>
-        <%= paginate @posts %>
+
       </div>
   </div>
 </section>

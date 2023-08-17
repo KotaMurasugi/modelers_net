@@ -33,7 +33,7 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:keyword])
+    @posts = Post.search(params[:keyword]).page(params[:page]).order(create_at: "DESC")
   end
 
   def set_post

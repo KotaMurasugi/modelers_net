@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get 'homes/about' => 'homes#about', as: 'about'
     resources :posts, only: [:new, :create, :index, :show, :destroy] do
       #いいね機能
-      resource  :favorites, only: [:create, :destroy]
+      resource  :favorites, only: [:create, :destroy,]
       #コメント機能
       resources :comments,  only: [:create, :destroy]
       collection do
@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       end
     end
     resources :users, only: [:show, :index, :edit, :update]do
+      member do
+        get 'favorites'
+      end
       #フォロー機能用
       resource :relationships, only:[:create, :destroy]
       get 'follows' => 'relationships#follows'
